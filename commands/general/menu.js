@@ -48,7 +48,7 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
         );
 
         const date = now.toLocaleDateString(
-            config.language === "fr" ? "fr-FR" : "en-US",
+            config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US",
             {
                 day: "numeric",
                 month: "numeric",
@@ -136,17 +136,17 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
             other: "AUTRES"
         };
         const categoryNamesEs = {
-            admin: "ADMINISTRACION",
+            admin: "ADMINISTRACIÓN",
             group: "GRUPO",
             owner: "PROPIETARIO",
             fun: "JUEGOS",
             general: "GENERAL",
-            info: "INFORMACION",
+            info: "INFORMACIÓN",
             tools: "HERRAMIENTAS",
             media: "MULTIMEDIA",
             download: "DESCARGAS",
             utility: "UTILIDADES",
-            search: "BUSQUEDA",
+            search: "BÚSQUEDA",
             other: "OTROS"
         };
 
@@ -214,6 +214,8 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
             if (!description) {
                 return config.language === "fr"
                     ? "✦ *Aucune description disponible*"
+                    : config.language === "es"
+                    ? "✦ *Sin descripción disponible*"
                     : "✦ *No description available*";
             }
 
@@ -226,7 +228,7 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
         // CATEGORY DISPLAY
         const getCategoryName = (category) => {
             if (config.language === "es") { return categoryNamesEs[category] || category; }
-            if (config.language === "es") { description = commandEs[command.name] || dictionary[command.name] || command.description; } else if (config.language === "fr") {
+            if (config.language === "fr") {
                 return (
                     categoryNamesFr[category] ||
                     category.charAt(0).toUpperCase() +
@@ -272,16 +274,22 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
             const unknown =
                 config.language === "fr"
                     ? "❌ _Cette catégorie n'existe pas._"
+                    : config.language === "es"
+                    ? "❌ _Esta categoría no existe._"
                     : "❌ _This category does not exist._";
 
             const availableTitle =
                 config.language === "fr"
                     ? "📂 CATÉGORIES DISPONIBLES"
+                    : config.language === "es"
+                    ? "📂 CATEGORÍAS DISPONIBLES"
                     : "📂 AVAILABLE CATEGORIES";
 
             const example =
                 config.language === "fr"
                     ? "Exemple :"
+                    : config.language === "es"
+                    ? "Ejemplo:"
                     : "Example:";
 
             return await sendMenu(
@@ -291,6 +299,8 @@ config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US
 
 ╭──[ ❌ ${config.language === "fr"
     ? "PAGE INTROUVABLE"
+    : config.language === "es"
+    ? "PÁGINA NO ENCONTRADA"
     : "PAGE NOT FOUND"} ]────╮
 │
 │ ${unknown}
@@ -316,27 +326,43 @@ ${available}╰─────────────────────�
 ╭─────────────────╮
 │ ${config.language === "fr"
     ? "Préfixe"
+    : config.language === "es"
+    ? "Prefijo"
     : "Prefix"} : ${prefix}
 │ ${config.language === "fr"
     ? "Bonjour"
+    : config.language === "es"
+    ? "Hola"
     : "Hello"} : ${userName}
 │ ${config.language === "fr"
     ? "Jour"
+    : config.language === "es"
+    ? "Día"
     : "Day"} : ${day}
 │ ${config.language === "fr"
     ? "Date"
+    : config.language === "es"
+    ? "Fecha"
     : "Date"} : ${date}
 │ ${config.language === "fr"
     ? "Version"
+    : config.language === "es"
+    ? "Versión"
     : "Version"} : ${version}
 │ ${config.language === "fr"
     ? "Commandes"
+    : config.language === "es"
+    ? "Comandos"
     : "Commands"} : ${totalCommands}
 │ ${config.language === "fr"
     ? "Catégories"
+    : config.language === "es"
+    ? "Categorías"
     : "Categories"} : ${totalCategories}
 │ ${config.language === "fr"
     ? "Type"
+    : config.language === "es"
+    ? "Tipo"
     : "Type"} : WhatsApp Bot
 ╰─────────────────╯`;
 
@@ -358,6 +384,11 @@ ${available}╰─────────────────────�
                     if (config.language === "fr") {
                         description =
                             commandFr[command.name] ||
+                            dictionary[command.name] ||
+                            command.description;
+                    } else if (config.language === "es") {
+                        description =
+                            commandEs[command.name] ||
                             dictionary[command.name] ||
                             command.description;
                     } else {
@@ -398,6 +429,11 @@ menu += `│ ⇛ \`${prefix}${command.name}\`
                     commandFr[command.name] ||
                     dictionary[command.name] ||
                     command.description;
+            } else if (config.language === "es") {
+                description =
+                    commandEs[command.name] ||
+                    dictionary[command.name] ||
+                    command.description;
             } else {
                 description =
                     dictionary[command.name] ||
@@ -414,6 +450,8 @@ menu += `│ ⇛ \`${prefix}${command.name}\`
 > ✦ ${botName} • v${version}
 > ${config.language === "fr"
     ? "Tapez .menu pour revenir au menu principal."
+    : config.language === "es"
+    ? "Escribe .menu para volver al menú principal."
     : "Type .menu to return to the main menu."}`;
 
         return await sendMenu(menu);
