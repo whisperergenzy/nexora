@@ -1,187 +1,77 @@
-✦ NEXORA
+# ✦ NEXORA
 
-A modular WhatsApp bot built with Node.js and Baileys, designed around a dynamic command system, event handling, multilingual support, moderation tools, utilities, media features, and extensibility.
+[![JavaScript](https://img.shields.io/badge/JavaScript-primary-f7df1e)](https://github.com/whisperergenzy/nexora)
+[![Public](https://img.shields.io/badge/repository-public-brightgreen)](https://github.com/whisperergenzy/nexora)
 
-NEXORA is built to be easy to expand: commands, events, plugins, language files, and reusable helpers are separated into their own systems instead of being packed into one large file.
+NEXORA is a modular WhatsApp bot built with Node.js and the Baileys ecosystem. It uses dynamic command loading, event handlers, plugins, localization, moderation tools, media utilities, and persistent JSON-based runtime data.
 
----
+The project is actively maintained. The default branch is `main`, and the repository was last updated on **2026-11-24**.
 
-✦ What is NEXORA?
+## Current status
 
-NEXORA is a feature-rich WhatsApp bot that uses the WhatsApp multi-device protocol through Baileys.
+- **Repository:** [whisperergenzy/nexora](https://github.com/whisperergenzy/nexora)
+- **Visibility:** Public
+- **Primary language:** JavaScript
+- **Default branch:** `main`
+- **Open issues:** 0
+- **Stars:** 2
+- **License file:** Not present in the repository
+- **Activity:** Active development
+- **Platform:** Node.js / WhatsApp
+- **Localization:** English and French
 
-Its architecture is centered around:
+Recent development has focused on reconnection behavior, Telegram sticker forwarding, and Lottie/media rendering diagnostics.
 
-- Dynamic command loading
-- Event-driven message handling
-- Permission management
-- Group moderation
-- Interactive command sessions
-- JSON-based persistent storage
-- English/French localization
-- Plugin support
-- Media and utility features
-- Optional AI and third-party integrations
+## Language composition
 
-The project is actively developed and its architecture continues to evolve.
+| Language | Repository size (bytes) |
+|----------|------------------------:|
+| JavaScript | 644,650 |
+| Python | 17,912 |
+| C++ | 4,936 |
+| Shell | 3,504 |
 
----
+Python and C++ support supplementary Telegram/media functionality; JavaScript is the main application language.
 
-⚡ Features
+## Features
 
-💬 Messaging & Presence
+- Dynamic command and plugin loading
+- Event-driven WhatsApp message handling
+- Group moderation and permission checks
+- Public and private operating modes
+- Per-command cooldowns and interactive sessions
+- AFK, activity, seen, and read-status utilities
+- Anti-link, anti-spam, mute, and warning tools
+- English and French localization
+- WhatsApp and optional Telegram integration
+- Media downloading and image, sticker, and Lottie processing
+- JSON-based runtime configuration and storage
 
-- Auto typing
-- Auto recording
-- Automatic read/blue-tick controls
-- Per-user read controls
-- Message caching
-- AFK detection and responses
-- Bot-account mention detection
-- Interactive message sessions
+## Requirements
 
-🛡️ Group Management
-
-- Group moderation commands
-- Admin permission checks
-- Anti-link utilities
-- Anti-spam features
-- Mute controls
-- Warning systems
-- Group participant events
-- Group activity tracking
-
-👑 Permission System
-
-NEXORA supports multiple permission levels:
-
-Creator
-   ↓
-Owner
-   ↓
-Sudo
-   ↓
-Admin
-   ↓
-Public
-
-Commands can define the permission level required to execute them.
-
-The bot also supports public/private operating modes and per-command cooldowns.
-
-📊 Activity & Utilities
-
-- Activity tracking
-- User activity information
-- Leaderboards
-- Seen utilities
-- Status saver
-- AFK system
-- Runtime/session utilities
-- Message caching
-
-🎨 Localization
-
-NEXORA currently supports:
-
-- 🇬🇧 English
-- 🇫🇷 French
-
-Language files are maintained through the project's language build system.
-
-After changing language data:
-
-```bash
-npm run translate
-```
-
-or:
-
-```bash
-npm run build
-```
-
-🧩 Plugins & Events
-
-The bot has separate systems for:
-
-- Commands
-- Events
-- Plugins
-- Reusable library modules
-
-This makes it possible to add functionality without continually modifying the main entry point.
-
----
-
-🚀 Installation
-
-Requirements
-
-Before installing NEXORA, make sure you have:
-
-- Node.js 20+
+- Node.js 20 or newer
 - npm
-- A WhatsApp account for pairing
+- A WhatsApp account
 - Internet access
 - Git (recommended)
 
-Some optional features may require additional API keys or system dependencies.
+Optional integrations may require API credentials or additional system dependencies.
 
----
-
-1. Clone the repository
+## Installation
 
 ```bash
-git clone https://github.com/sneakyuser5-netizen/NEXORA.git
-cd NEXORA
-```
-
-2. Install dependencies
-
-```bash
+git clone https://github.com/whisperergenzy/nexora.git
+cd nexora
 npm install
-```
-
-The project's "postinstall" script also prepares the additional dependencies used by some media/Lottie functionality.
-
-3. Check dependencies
-
-```bash
 npm run check
-```
-
-This runs the project's dependency-checking script.
-
-4. Start NEXORA
-
-```bash
 npm start
 ```
 
-The main entry point is:
+The main entry point is `index.js`.
 
-```
-index.js
-```
+## First-time setup
 
----
-
-🔐 Pairing & First-Time Setup
-
-NEXORA uses WhatsApp's multi-device authentication and pairing-code flow.
-
-During the first setup, the bot needs the phone number that will be paired with WhatsApp.
-
-The setup information is stored in:
-
-```
-database/setup.json
-```
-
-Use international number format.
-
-Example:
+Create the setup data used for pairing:
 
 ```json
 {
@@ -189,576 +79,167 @@ Example:
 }
 ```
 
-⚠️ Important
-
-Do not replace the example above with somebody else's number.
-
-Use the WhatsApp number that you intend to pair with the bot.
-
-After configuring the number:
+Store this value in `database/setup.json`, then run:
 
 ```bash
 npm start
 ```
 
-Follow the pairing instructions printed by the bot.
+Use the international format for the WhatsApp number you intend to pair. Follow the pairing instructions printed by the application.
 
-Once authentication has been completed, the WhatsApp authentication state is stored locally in the session directory.
+## Configuration
 
----
-
-📁 Authentication Data
-
-NEXORA uses multi-file authentication state.
-
-The authentication/session data is sensitive.
-
-```
-session/
-```
-
-⚠️ Never publish or share your session files.
-
-Anyone who obtains valid WhatsApp authentication credentials may potentially gain access to the connected WhatsApp account.
-
-Keep the session directory private and make sure it is excluded from Git.
-
----
-
-⚙️ Configuration
-
-Main configuration is handled through:
-
-```
-config.js
-```
-
-Current core settings include:
+Core settings are defined in `config.js`:
 
 - `BOT_NAME`
 - `PREFIX`
 - `CREATOR`
 - `TIMEZONE`
 
-The default command prefix is:
+The default command prefix is `.`:
 
-```
-.
-```
-
-So a command can look like:
-
-```
+```text
 .menu
-```
-
-or:
-
-```
 .help
-```
-
-Runtime and persistent settings are stored in JSON files under:
-
-```
-database/
-```
-
-Examples include settings for:
-
-- Global configuration
-- Group configuration
-- Owner information
-- Sudo users
-- Mutes
-- Activity
-- Read settings
-- Other runtime state
-
-Do not treat runtime database files as source code.
-
-They may change while the bot is running.
-
----
-
-🔑 Environment Variables
-
-Optional integrations can use environment variables.
-
-Keep private API keys inside:
-
-```
-.env
-```
-
-For example:
-
-```
-NEWS_API_KEY=your_key_here
-TMDB_API_KEY=your_key_here
-GROQ_API_KEY=your_key_here
-```
-
-Never commit real API keys to a public repository.
-
-Use ".env.example" as a template where applicable.
-
----
-
-🧠 Command System
-
-Commands live under:
-
-```
-commands/
-```
-
-Commands are loaded dynamically at startup.
-
-You generally do not need to manually import every command into "index.js".
-
-A command can define metadata such as:
-
-- `name`
-- `aliases`
-- `description`
-- `category`
-- `permission`
-- `usage`
-- `minArgs`
-- `cooldown`
-- `execute()`
-
-A simplified command structure looks like:
-
-```
-commands/
-├── admin/
-├── fun/
-├── general/
-├── group/
-├── info/
-├── owner/
-└── tools/
-```
-
-Additional categories may exist as the project evolves.
-
----
-
-⌨️ Command Usage
-
-The normal command format is:
-
-```
-.command argument1 argument2
-```
-
-Commands can also support inline argument syntax:
-
-```
 .command=argument
 ```
 
-Aliases can provide alternative names for the same command.
+For environment-based integrations, copy or create `.env` and keep credentials private.
 
-Cooldowns can be applied per user and per command.
+Example variable names:
 
----
-
-👑 Permissions
-
-NEXORA separates privileged operations into different levels.
-
-**Public**
-
-Available to normal users when the relevant command allows public access.
-
-**Admin**
-
-Requires appropriate group-admin privileges.
-
-**Sudo**
-
-Trusted users granted additional bot privileges.
-
-**Owner**
-
-Users recognized by the bot as owners.
-
-**Creator**
-
-The highest-level creator permission.
-
-The exact permission required depends on each command.
-
----
-
-🔒 Public & Private Mode
-
-NEXORA supports different operating modes.
-
-In public mode, commands configured for public use can be accessed normally.
-
-In private mode, command access is restricted to privileged users according to the permission system.
-
-This allows the bot owner to limit who can interact with administrative functionality.
-
----
-
-🧩 Interactive Sessions
-
-Some operations require more than one message.
-
-NEXORA supports temporary interactive sessions that allow a command to:
-
-```
-User sends command
-        ↓
-Bot requests additional input
-        ↓
-Session stores the pending operation
-        ↓
-User responds
-        ↓
-Bot continues the operation
+```text
+NEWS_API_KEY=your_key_here
+TMDB_API_KEY=your_key_here
+GROO_API_KEY=your_key_here
 ```
 
-This system is useful for confirmation prompts, multi-step operations, and other conversational commands.
+Do not commit real API keys or authentication credentials.
 
----
+## Project structure
 
-📡 Event System
-
-Event modules are stored under:
-
-```
-events/
-```
-
-The event handler loads and dispatches event modules separately from commands.
-
-Depending on the current implementation, events can handle things such as:
-
-- Incoming messages
-- Message updates
-- Group participant changes
-- Presence updates
-- Calls
-- Connection changes
-- Other WhatsApp events
-
-This separation keeps event-specific logic outside the main command system.
-
----
-
-🔌 Plugin System
-
-Plugins live under:
-
-```
-plugins/
+```text
+nexora/
+├── assets/             Static assets and bot resources
+├── commands/           Dynamically loaded commands
+├── core/               Core bot functionality
+├── events/             WhatsApp event modules
+├── language/           English and French resources
+├── lib/                Reusable helpers and settings
+├── media/              Media-related resources
+├── plugins/            Optional extensions
+├── scripts/            Setup and maintenance scripts
+├── tools/              Build and development utilities
+├── config.js           Core configuration
+├── eventHandler.js     Event loading and dispatch
+├── handler.js          Command loading and execution
+├── index.js            Main application entry point
+├── package.json        Dependencies and npm scripts
+├── start.sh            Startup helper
+├── telegram_config.py  Telegram API configuration template
+└── requirements.txt    Python dependencies
 ```
 
-The plugin architecture allows additional functionality to be introduced without unnecessarily modifying the core bot.
+## Command system
 
-A plugin can interact with existing helper systems and bot events depending on the plugin interface being used.
+Commands live under `commands/` and are loaded dynamically. Command files may declare:
 
-This is intended to keep NEXORA extensible as the project grows.
+- `name` and aliases
+- Description and category
+- Required permission level
+- Usage and minimum arguments
+- Cooldown
+- An `execute()` function
 
----
+Commands are organized by category, including admin, fun, general, group, info, owner, and tools modules.
 
-🌍 Language System
+## Permission hierarchy
 
-NEXORA supports:
-
-- English
-- French
-
-Language resources are located in:
-
+```text
+Creator
+  ↓
+Owner
+  ↓
+Sudo
+  ↓
+Admin
+  ↓
+Public
 ```
-language/
-```
 
-The project includes a language build tool:
+The required level is defined by each command. Public and private bot modes can further restrict command access.
 
-```
-tools/build-language.js
-```
+## Localization
 
-To regenerate the language files:
+Language resources are maintained under `language/`. Regenerate generated language files after changing translations:
 
 ```bash
 npm run translate
 ```
 
-The same build operation can also be run with:
+The `npm run build` command executes the same language build process.
 
-```bash
-npm run build
-```
-
-When adding or changing translation keys, keep placeholders, key names, and command-related strings consistent with the existing language system.
-
----
-
-🏗️ Project Architecture
-
-The project is divided into several major systems.
-
-```
-NEXORA/
-│
-├── assets/
-│   └── Static assets and bot resources
-│
-├── commands/
-│   └── Command modules
-│
-├── core/
-│   └── Core bot functionality
-│
-├── database/
-│   └── JSON-based runtime storage
-│
-├── events/
-│   └── WhatsApp event modules
-│
-├── language/
-│   └── Localization resources
-│
-├── lib/
-│   └── Reusable helper systems
-│
-├── media/
-│   └── Media-related resources
-│
-├── plugins/
-│   └── Optional extensions
-│
-├── scripts/
-│   └── Setup and maintenance scripts
-│
-├── tools/
-│   └── Development/build utilities
-│
-├── config.js
-│   └── Core configuration
-│
-├── eventHandler.js
-│   └── Event loading/dispatch system
-│
-├── handler.js
-│   └── Command loading/execution and message processing
-│
-├── index.js
-│   └── Main entry point and WhatsApp connection
-│
-├── package.json
-│   └── Dependencies and npm scripts
-│
-└── start.sh
-    └── Startup helper
-```
-
----
-
-🔄 Message Processing
-
-At a high level, an incoming message passes through several layers before a command is executed.
-
-```
-WhatsApp message
-       │
-       ▼
-Message/event handling
-       │
-       ├── Read handling
-       ├── Message caching
-       ├── Identity handling
-       ├── AFK handling
-       ├── Activity tracking
-       ├── Mention handling
-       │
-       ▼
-Command detection
-       │
-       ▼
-Command parsing
-       │
-       ▼
-Cooldown / mode checks
-       │
-       ▼
-Permission validation
-       │
-       ▼
-Argument validation
-       │
-       ▼
-Command execution
-```
-
-This layered design allows individual systems to evolve without placing every feature directly inside the command itself.
-
----
-
-🛠️ Development
-
-**Add a command**
-
-Create a JavaScript file inside an appropriate category:
-
-```
-commands/<category>/<command>.js
-```
-
-The command should expose the metadata expected by the command loader and an execution function.
-
-Because commands are dynamically loaded, avoid duplicating command registration in unrelated files.
-
----
-
-**Add an event**
-
-Create the event module under:
-
-```
-events/
-```
-
-Use the existing event conventions when connecting the module to WhatsApp events.
-
----
-
-**Add or modify translations**
-
-Update the appropriate language resources and rebuild them:
-
-```bash
-npm run translate
-```
-
-Then check the generated changes before committing.
-
----
-
-**Check the project**
-
-Run:
-
-```bash
-npm run check
-```
-
-You can also check individual JavaScript files with Node:
-
-```bash
-node --check path/to/file.js
-```
-
-For example:
-
-```bash
-node --check index.js
-```
-
----
-
-📜 Available npm Scripts
-
-The current "package.json" defines:
+## npm scripts
 
 | Command | Purpose |
 |---------|---------|
 | `npm start` | Start NEXORA |
 | `npm run setup` | Run the setup script |
 | `npm run check` | Check project dependencies |
-| `npm run translate` | Build/regenerate language files |
+| `npm run translate` | Build or regenerate language files |
 | `npm run build` | Run the language build process |
 
-The project also uses a "postinstall" script for additional dependency/setup tasks.
-
----
-
-📦 Main Dependencies
-
-NEXORA currently uses a number of packages for different parts of its functionality, including:
+## Main dependencies
 
 - **Baileys** — WhatsApp multi-device communication
 - **Axios** — HTTP requests
 - **dotenv** — environment configuration
 - **OpenAI** — optional AI functionality
-- **Google Translate API** — translation functionality
-- **Sharp / Jimp** — image processing
-- **Edge TTS** — text-to-speech
+- **Google Translate** — translation functionality
+- **Sharp and Jimp** — image processing
+- **node-edge-tts** — text-to-speech
 - **youtube-dl-exec** — media downloading
-- **QRCode** — QR-related utilities
+- **QRCode** — QR utilities
 - **Pino** — logging
-- **BTCH Downloader / TTDL** — media/download functionality
+- **BTCH Downloader / TTDL** — media utilities
 
-See "package.json" for the authoritative dependency list and versions.
+See `package.json` for the exact dependency list.
 
----
+## Security
 
-🔐 Security
+Keep the following private:
 
-If you are running your own instance, treat the following as private:
+- `session/` and WhatsApp authentication state
+- `.env` and API credentials
+- Telegram API credentials
+- Runtime database values
+- Private owner, sudo, mute, and activity data
 
-- `session/`
-- `.env`
-- private API keys
-- WhatsApp authentication credentials
-- private runtime data
-
-Never commit:
-
-- `.env`
-- session credentials
-- real API keys
-- private authentication files
-
-Before pushing changes to a public repository, inspect your Git diff:
-
-```bash
-git diff
-```
-
-and:
+Never commit authentication files or secrets. Review changes before publishing:
 
 ```bash
 git status
+git diff
 ```
 
-If a secret has already been committed, simply deleting it from the latest file is not always enough because Git history may still contain it.
+If a secret was committed, deleting it from the latest revision does not remove it from Git history.
 
----
+## Development
 
-🗃️ Runtime Database
+Add commands in `commands/<category>/<command>.js` and event modules in `events/`. Use the existing module conventions and avoid manually registering dynamically loaded commands.
 
-NEXORA uses lightweight JSON storage instead of requiring an external database server.
+For JavaScript syntax checks:
 
-This makes the project easy to run on environments such as:
+```bash
+npm run check
+node --check index.js
+```
 
-- Linux
-- Termux
-- VPS environments
-- Local development machines
+Runtime JSON files under `database/` may change while the bot is running. Do not commit them unless the changes are intentional.
 
-Runtime JSON files may change while the bot is running.
+## Troubleshooting
 
-For that reason, avoid blindly committing every modified file under "database/".
-
-Only commit database changes when they are intentionally part of the project.
-
----
-
-🧪 Troubleshooting
-
-**The bot does not start**
-
-Try:
+### The bot does not start
 
 ```bash
 npm install
@@ -766,133 +247,54 @@ npm run check
 npm start
 ```
 
-If a JavaScript syntax problem is suspected:
+For a specific syntax error:
 
 ```bash
 node --check index.js
 ```
 
-Then check the relevant module reported by Node.
+### No pairing code appears
 
----
+Verify `database/setup.json`, make sure the phone number uses international format, and restart with `npm start`.
 
-**No pairing code appears**
+### The bot logs out
 
-Check that the initial setup information is present and valid:
+WhatsApp authentication may need to be restored. Re-pairing may require removing or replacing the existing session state. Back up and protect that state before making changes.
 
-```
-database/setup.json
-```
-
-Then restart:
-
-```bash
-npm start
-```
-
-Make sure the phone number uses international format.
-
----
-
-**The bot logs out**
-
-If WhatsApp authentication has been invalidated or logged out, the existing session may need to be removed and the bot paired again.
-
-Do not delete the session directory casually while troubleshooting unless you understand that doing so can require a new authentication process.
-
----
-
-**Translation changes are not appearing**
-
-Run:
+### Translation changes do not appear
 
 ```bash
 npm run translate
 ```
 
-Then verify the generated language files and restart the bot if necessary.
+Then restart the bot and verify the generated language files.
 
----
+## Contributing
 
-📢 NEXORA Updates
+1. Fork the repository.
+2. Create a focused feature or fix branch.
+3. Test the affected functionality.
+4. Run syntax and dependency checks.
+5. Keep secrets and runtime data out of commits.
+6. Update this README when behavior or setup instructions change.
+7. Submit a clear pull request.
 
-Follow the official NEXORA WhatsApp Channel for:
+## Updates
 
-- 🚀 New features
-- 🛠️ Improvements
-- 🐛 Bug fixes
-- 📚 Usage information
-- 🔔 Project announcements
-
-Official WhatsApp Channel:
+Official NEXORA WhatsApp channel:
 
 https://whatsapp.com/channel/0029VbCmque7Noa0J2BLR82e
 
----
+## Author
 
-🤝 Contributing
+The repository is owned by [whisperergenzy](https://github.com/whisperergenzy).
 
-Contributions, suggestions, and bug reports are welcome.
+GitHub account: [sneakyuser5-netizen](https://github.com/sneakyuser5-netizen)
 
-Before making a contribution:
+## License
 
-1. Fork the repository.
-2. Create a separate branch for your changes.
-3. Keep changes focused.
-4. Test the affected functionality.
-5. Check JavaScript syntax.
-6. Avoid committing runtime credentials or private data.
-7. Update documentation when behavior changes.
-8. Submit a clear pull request.
-
-For larger changes, opening an issue first can help establish the intended direction.
+No license file is currently included in this repository. Its license and reuse terms are therefore not yet defined here.
 
 ---
 
-🧹 Development Philosophy
-
-NEXORA is designed around a few simple principles:
-
-**Keep features modular**
-
-Commands should remain commands.
-
-Events should remain events.
-
-Reusable functionality should live in "lib/".
-
-**Avoid unnecessary duplication**
-
-Before creating a new helper or system, check whether an existing module already provides the required functionality.
-
-**Protect runtime data**
-
-Source code can be public.
-
-Authentication credentials and private configuration should not be.
-
-**Keep documentation synchronized**
-
-When the architecture changes, update the README and related documentation instead of allowing old instructions to remain indefinitely.
-
----
-
-📄 License
-
-This project is released under the MIT License.
-
-See the repository license file for the complete license text.
-
----
-
-👤 Author
-
-𝚃𝚑𝚎 𝚠𝚑𝚒𝚜
-
-GitHub: https://github.com/sneakyuser5-netizen
-
----
-
-✦ NEXORA
-
-«Modular. Extensible. Built for WhatsApp.»
+✦ NEXORA — Modular. Extensible. Built for WhatsApp.
