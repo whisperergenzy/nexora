@@ -13,7 +13,7 @@ module.exports = {
 
     permission: "owner",
 
-    usage: ".language en/fr",
+    usage: ".language en/fr/es",
 
     execute: async (sock, msg, args) => {
 
@@ -21,7 +21,7 @@ module.exports = {
 
         const lang = args[0]?.toLowerCase();
 
-        if (!["en", "fr"].includes(lang)) {
+        if (!["en", "fr", "es"].includes(lang)) {
 
             return sock.sendMessage(jid, {
                 text: t("owner.language_usage")
@@ -36,9 +36,7 @@ module.exports = {
         );
 
         await sock.sendMessage(jid, {
-            text: lang === "fr"
-                ? "🇫🇷 Langue du bot changée en Français."
-                : "🇬🇧 Bot language changed to English."
+            text: lang === "fr" ? "🇫🇷 Langue du bot changée en Français." : lang === "es" ? "🇪🇸 Idioma del bot cambiado a Español." : "🇬🇧 Bot language changed to English."
         });
 
     }
