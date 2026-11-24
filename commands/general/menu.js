@@ -12,9 +12,9 @@ module.exports = {
         const { commands } = require("../../handler");
         const settings = require("../../lib/settings");
 
-        const dictionary = require("../../language/source/dictionary");
-        const commandFr = require("../../language/source/command-fr");
-
+const dictionary = require("../../language/source/dictionary");
+const commandFr = require("../../language/source/command-fr");
+const commandEs = require("../../language/source/command-es");
         const jid = msg.key.remoteJid;
         const page = (args[0] || "").toLowerCase().trim();
 
@@ -25,11 +25,12 @@ module.exports = {
         const prefix = ".";
         const userName = msg.pushName || "User";
 
-        const language =
-            config.language === "fr"
-                ? "Français 🇫🇷"
-                : "English 🇬🇧";
-
+const language =
+    config.language === "fr"
+        ? "Français 🇫🇷"
+        : config.language === "es"
+        ? "Español 🇪🇸"
+        : "English 🇬🇧";
         // MENU IMAGE
         const menuImage = path.join(
             __dirname,
@@ -42,7 +43,7 @@ module.exports = {
         const now = new Date();
 
         const day = now.toLocaleDateString(
-            config.language === "fr" ? "fr-FR" : "en-US",
+config.language === "fr" ? "fr-FR" : config.language === "es" ? "es-ES" : "en-US",
             { weekday: "long" }
         );
 
@@ -134,6 +135,20 @@ module.exports = {
             search: "RECHERCHE",
             other: "AUTRES"
         };
+        const categoryNamesEs = {
+            admin: "ADMINISTRACION",
+            group: "GRUPO",
+            owner: "PROPIETARIO",
+            fun: "JUEGOS",
+            general: "GENERAL",
+            info: "INFORMACION",
+            tools: "HERRAMIENTAS",
+            media: "MULTIMEDIA",
+            download: "DESCARGAS",
+            utility: "UTILIDADES",
+            search: "BUSQUEDA",
+            other: "OTROS"
+        };
 
         // CATEGORY ORDER
         const preferredOrder = [
@@ -210,7 +225,8 @@ module.exports = {
 
         // CATEGORY DISPLAY
         const getCategoryName = (category) => {
-            if (config.language === "fr") {
+            if (config.language === "es") { return categoryNamesEs[category] || category; }
+            if (config.language === "es") { description = commandEs[command.name] || dictionary[command.name] || command.description; } else if (config.language === "fr") {
                 return (
                     categoryNamesFr[category] ||
                     category.charAt(0).toUpperCase() +
