@@ -118,6 +118,14 @@ async def action_login(value):
 
         sent = await client.send_code_request(phone)
 
+        delivery_type = type(sent.type).__name__
+        next_type = (
+            type(sent.next_type).__name__
+            if getattr(sent, "next_type", None)
+            else None
+        )
+        timeout = getattr(sent, "timeout", None)
+
         state = {
             "phone": phone,
             "phone_code_hash": sent.phone_code_hash,
@@ -126,7 +134,25 @@ async def action_login(value):
             "attempts": 0,
         }
         save_pending(state)
-        emit(True, "telegram_login_code_sent")
+
+        emit(
+            True,
+            "telegram_login_code_sent",
+            delivery=delivery_type,
+            next_delivery=next_type,
+            timeout=timeout,
+        )
+
+    except FloodWaitError:
+        raise
+    except PhoneNumberInvalidError:
+        raise
+    except Exception as exc:
+        emit(
+            False,
+            "telegram_helper_error",
+            error_type=type(exc).__name__,
+        )
     finally:
         await client.disconnect()
 
