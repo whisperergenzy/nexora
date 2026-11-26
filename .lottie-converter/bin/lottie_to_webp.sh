@@ -90,8 +90,7 @@ if ! awk -v fps="$FPS" 'BEGIN { exit !(fps > 0) }'; then
 fi
 
 RENDER_LOG="$TMP_DIR/render.log"
-"$RENDERER" "$JSON" --output "$FRAMES" --width 384 --height 136 --fps "$FPS" 2>&1 | tee "$RENDER_LOG"
-
+"$RENDERER" "$JSON" "$FRAMES" 512 0 2>&1 | tee "$RENDER_LOG"
 mapfile -t PNG_FILES < <(
     find "$FRAMES" -maxdepth 1 -type f -name '*.png' |
     sort -V
@@ -116,8 +115,9 @@ INPUT_RATE="$FPS"
     -an \
     -c:v "$WEBP_ENCODER" \
     -lossless 0 \
-    -quality 80 \
     -compression_level 0 \
+   -quality 90 \
+-compression_level 4 \
     -loop 0 \
     -vsync 0 \
     "$OUTPUT"
