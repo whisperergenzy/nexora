@@ -27,9 +27,9 @@ module.exports = {
 
         const jid = original.key.remoteJid;
 
-        const groupSettings = settings.get(jid);
+        const globalSettings = settings.get("global");
 
-        if (!groupSettings?.antidelete) return;
+        if (!globalSettings?.antidelete) return;
 
         const sender =
             original.key.participant ||
