@@ -669,7 +669,7 @@ module.exports = {
   "owner.getsudo_title": "👑 *𝙑𝙤𝙨 𝙢𝙚𝙢𝙗𝙧𝙚𝙨 𝙎𝙪𝙙𝙤*",
   "owner.invalid_option": "❌ *𝙊𝙥𝙩𝙞𝙤𝙣 𝙞𝙣𝙫𝙖𝙡𝙞𝙙𝙚.*",
 
-  "owner.language_usage": "📌 *𝙐𝙩𝙞𝙡𝙞𝙨𝙖𝙩𝙞𝙤𝙣 :*\n.language en\n.language fr",
+  "owner.language_usage": "📌 *𝙐𝙩𝙞𝙡𝙞𝙨𝙖𝙩𝙞𝙤𝙣 :*\n.language en\n.language fr\n.language es",
   "owner.leave_goodbye": "👋 *𝘼𝙪 𝙧𝙚𝙫𝙤𝙞𝙧 !*",
   "owner.off": "📴 Désactivé",
   "owner.on": "Activé",

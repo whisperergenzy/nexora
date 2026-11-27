@@ -672,7 +672,7 @@ module.exports = {
   "owner.getsudo_empty": "*𝗔𝘂𝗻 𝗻𝗼 𝗵𝗮𝘆 𝗺𝗶𝗲𝗺𝗯𝗿𝗼𝘀 𝘀𝘂𝗱𝗼.*\n𝗨𝘀𝗮 *.setsudo* 𝗿𝗲𝘀𝗽𝗼𝗻𝗱𝗶𝗲𝗻𝗱𝗼 𝗮 𝘂𝗻 𝗺𝗲𝗻𝘀𝗮𝗷𝗲.",
   "owner.getsudo_title": "👑 *𝗧𝘂𝘀 𝗠𝗶𝗲𝗺𝗯𝗿𝗼𝘀 𝗦𝘂𝗱𝗼*",
   "owner.invalid_option": "❌ *𝗢𝗽𝗰𝗶𝗼𝗻 𝗶𝗻𝘃𝗮𝗹𝗶𝗱𝗮.*",
-  "owner.language_usage": "📌 *𝗨𝘀𝗼:*\n.language en\n.language fr",
+  "owner.language_usage": "📌 *𝗨𝘀𝗼:*\n.language en\n.language fr\n.language es",
   "owner.leave_goodbye": "👋 *¡𝗔𝗱𝗶𝗼𝘀!*",
   "owner.off": "OFF",
   "owner.on": "ON",
